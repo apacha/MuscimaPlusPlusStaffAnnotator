@@ -8,7 +8,8 @@
         Title="MainWindow"
         Height="1000"
         Width="1600"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        PreviewKeyUp="Window_PreviewKeyUp">
     <Grid>
         <TextBox x:Name="currentImageTextBox"
                  HorizontalAlignment="Left"
@@ -18,11 +19,11 @@
                  Text="TextBox"
                  VerticalAlignment="Top"
                  Width="149" />
-        <TextBox x:Name="textBox1"
+        <TextBox x:Name="textBoxFileResults"
                  Height="65"
-                 Margin="339,10,10,0"
+                 Margin="574,10,10,0"
                  TextWrapping="Wrap"
-                 Text="TextBox"
+                 Text=""
                  VerticalAlignment="Top" />
         <Button x:Name="button"
                 Content="Previous"
@@ -38,16 +39,19 @@
                 VerticalAlignment="Top"
                 Width="50"
                 Click="ButtonNextImageClick" />
-        <ScrollViewer Margin="10,80,10,10" HorizontalScrollBarVisibility="Auto">
+        <ScrollViewer Margin="10,80,10,10"
+                      HorizontalScrollBarVisibility="Auto">
             <Grid>
                 <Image x:Name="image"
                        Margin="5"
                        Stretch="None"
                        MouseLeftButtonDown="image_MouseLeftButtonDown"
-                       PreviewMouseMove="image_PreviewMouseMove" />
+                       PreviewMouseMove="image_PreviewMouseMove"
+                       PreviewKeyUp="image_PreviewKeyUp" />
                 <Canvas x:Name="imageCanvas"
                         Margin="5"
-                        PreviewMouseUp="imageCanvas_PreviewMouseUp" />
+                        PreviewMouseUp="imageCanvas_PreviewMouseUp"
+                        PreviewKeyUp="imageCanvas_PreviewKeyUp" />
             </Grid>
         </ScrollViewer>
         <TextBlock x:Name="coordinatesTextBlock"
@@ -58,5 +62,13 @@
                    VerticalAlignment="Top"
                    Height="23"
                    Width="92" />
+        <TextBox x:Name="coordinatesTextBox"
+                 HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="131,10,0,0"
+                 TextWrapping="Wrap"
+                 Text=""
+                 VerticalAlignment="Top"
+                 Width="358" />
     </Grid>
 </Window>

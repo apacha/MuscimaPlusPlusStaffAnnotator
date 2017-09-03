@@ -63,8 +63,14 @@ namespace MuscimaPlusPlusStaffAnnotator
 
         private void ButtonNextImageClick(object sender, RoutedEventArgs e)
         {
+            NextImage();
+        }
+
+        private void NextImage()
+        {
             var index = ImagePaths.IndexOf(CurrentImage);
             LoadImage(index + 1);
+            coordinatesTextBox.Text = "";
         }
 
         private void LoadImage(int index)
@@ -117,14 +123,14 @@ namespace MuscimaPlusPlusStaffAnnotator
                 _rectangleBeingDrawn.Stroke = new SolidColorBrush(Colors.Red);
                 imageCanvas.Children.Add(_rectangleBeingDrawn);
 
-                coordinatesTextBlock.Text = _rectangleY + ":" + e.GetPosition(image).Y;
+                coordinatesTextBlock.Text = (_rectangleY + ":" + e.GetPosition(image).Y).Trim();
             }
             catch (Exception ex)
             {
                 //MessageBox.Show(ex.Message);
             }
         }
-        
+
         private void image_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (_rectangleBeingDrawn != null)
@@ -138,6 +144,42 @@ namespace MuscimaPlusPlusStaffAnnotator
         private void imageCanvas_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             _rectangleBeingDrawn = null;
+        }
+
+        private void imageCanvas_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            AddCoordinates(e);
+        }
+
+        private void image_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            AddCoordinates(e);
+        }
+
+        private void AddCoordinates(KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (coordinatesTextBox.Text == "")
+                {
+                    coordinatesTextBox.Text = coordinatesTextBlock.Text;
+                }
+                else
+                {
+                    coordinatesTextBox.Text += "," + coordinatesTextBlock.Text;
+                }
+            }
+            else if (e.Key == Key.RightShift)
+            {
+                textBoxFileResults.Text += currentImageTextBox.Text + coordinatesTextBox.Text + Environment.NewLine;
+                NextImage();
+
+            }
+        }
+
+        private void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            AddCoordinates(e);
         }
     }
 }
