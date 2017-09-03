@@ -5,8 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MuscimaPlusPlusStaffAnnotator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow"
+        Height="1000"
+        Width="1600"
+        Loaded="Window_Loaded">
     <Grid>
-        
+        <TextBox x:Name="currentImageTextBox"
+                 HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="10,52,0,0"
+                 TextWrapping="Wrap"
+                 Text="TextBox"
+                 VerticalAlignment="Top"
+                 Width="149" />
+        <TextBox x:Name="textBox1"
+                 Height="65"
+                 Margin="339,10,10,0"
+                 TextWrapping="Wrap"
+                 Text="TextBox"
+                 VerticalAlignment="Top" />
+        <Button x:Name="button"
+                Content="Previous"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0"
+                VerticalAlignment="Top"
+                Width="55"
+                Click="ButtonPreviousImageClick" />
+        <Button x:Name="button1"
+                Content="Next"
+                HorizontalAlignment="Left"
+                Margin="70,10,0,0"
+                VerticalAlignment="Top"
+                Width="50"
+                Click="ButtonNextImageClick" />
+        <ScrollViewer Margin="10,80,10,10" HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <Image x:Name="image"
+                       Margin="5"
+                       Stretch="None"
+                       MouseLeftButtonDown="image_MouseLeftButtonDown"
+                       PreviewMouseMove="image_PreviewMouseMove" />
+                <Canvas x:Name="imageCanvas"
+                        Margin="5"
+                        PreviewMouseUp="imageCanvas_PreviewMouseUp" />
+            </Grid>
+        </ScrollViewer>
+        <TextBlock x:Name="coordinatesTextBlock"
+                   HorizontalAlignment="Left"
+                   Margin="172,52,0,0"
+                   TextWrapping="Wrap"
+                   Text="TextBlock"
+                   VerticalAlignment="Top"
+                   Height="23"
+                   Width="92" />
     </Grid>
 </Window>
